@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataformas Digitales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-100 font-sans text-gray-800 min-h-screen p-8">
+
+    <div class="max-w-5xl mx-auto">
+        <!-- Encabezado -->
+        <div class="text-center mb-8">
+            <div class="flex justify-center items-center gap-3 mb-2">
+                <div class="bg-blue-600 text-white p-2 rounded-xl">
+                    <i data-lucide="layout-grid" class="w-8 h-8"></i>
+                </div>
+                <h1 class="text-4xl font-extrabold text-blue-600 tracking-tight">Plataformas Digitales</h1>
+            </div>
+            <p class="text-gray-500 text-base">Visualización de datos de las principales plataformas digitales</p>
+        </div>
+
+        <!-- Sección Filtros y Ordenamiento -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 mb-6">
+            <div class="flex items-center gap-2 mb-4 text-gray-800 font-semibold text-lg">
+                <i data-lucide="filter" class="w-5 h-5"></i>
+                <span>Filtros y Ordenamiento</span>
+            </div>
+
+            <form id="filter-form" method="GET" class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Filtro País -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Filtrar por país:</label>
+                    <select name="pais" onchange="this.form.submit()" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        {% for p in paises %}
+                            <option value="{{ p }}" {% if p == pais_actual %}selected{% endif %}>{{ p }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Ordenar por -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Ordenar por:</label>
+                    <select name="ordenar" onchange="this.form.submit()" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        {% for opcion in ['Nombre', 'Usuarios', 'Año Fundación', 'País'] %}
+                            <option value="{{ opcion }}" {% if opcion == orden_actual %}selected{% endif %}>{{ opcion }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Dirección -->
+                <div>
+                    <label class="block text-xs font-semibold text-gray-600 mb-1">Dirección:</label>
+                    <select name="direccion" onchange="this.form.submit()" class="w-full bg-gray-50 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <option value="Ascendente" {% if direccion_actual == 'Ascendente' %}selected{% endif %}>Ascendente</option>
+                        <option value="Descendente" {% if direccion_actual == 'Descendente' %}selected{% endif %}>Descendente</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+
+        <!-- Tabla de Datos -->
+        <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-slate-800 text-white text-sm font-semibold">
+                        <th class="py-3 px-6">
+                            <div class="flex items-center gap-1">
+                                Nombre
+                                {% if direccion_actual == 'Ascendente' %}
+                                    <i data-lucide="chevron-down" class="w-4 h-4"></i>
+                                {% else %}
+                                    <i data-lucide="chevron-up" class="w-4 h-4"></i>
+                                {% endif %}
+                            </div>
+                        </th>
+                        <th class="py-3 px-6">Usuarios</th>
+                        <th class="py-3 px-6">Año Fundación</th>
+                        <th class="py-3 px-6">País</th>
+                        <th class="py-3 px-6 text-center">Detalles</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100 text-sm">
+                    {% for item in plataformas %}
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="py-3.5 px-6 font-bold text-gray-800 flex items-center gap-3">
+                            <span class="{{ item.color }} text-white p-1.5 rounded-full flex items-center justify-center">
+                                <i data-lucide="globe" class="w-4 h-4"></i>
+                            </span>
+                            {{ item.nombre }}
+                        </td>
+                        <td class="py-3.5 px-6">
+                            <span class="bg-blue-600 text-white font-semibold text-xs px-2.5 py-1 rounded-md inline-block">
+                                {{ item.usuarios_str }}
+                            </span>
+                        </td>
+                        <td class="py-3.5 px-6 text-gray-600 font-medium">
+                            {{ item.anio }}
+                        </td>
+                        <td class="py-3.5 px-6">
+                            <span class="bg-gray-500 text-white font-medium text-xs px-2.5 py-1 rounded inline-block">
+                                {{ item.pais }}
+                            </span>
+                        </td>
+                        <td class="py-3.5 px-6 text-center">
+                            <button class="text-cyan-500 hover:text-cyan-600 border border-cyan-400 rounded-lg p-1 transition-colors">
+                                <i data-lucide="info" class="w-4 h-4"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+    </script>
+</body>
+</html>
