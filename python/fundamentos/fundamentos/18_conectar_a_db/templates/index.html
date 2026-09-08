@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mascotas</title>
+</head>
+<body>
+    <h1>Listado de Mascotas</h1>
+    {% if mascotas %}
+        <ul>
+            {% for mascota in mascotas %}
+                <li><strong>{{ mascota.nombre }}</strong> - {{ mascota.tipo }} - {{ mascota.color }}</li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No existen mascotas registradas.</p>
+    {% endif %}
+</body>
+</html>
