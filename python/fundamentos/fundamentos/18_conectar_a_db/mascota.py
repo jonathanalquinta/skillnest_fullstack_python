@@ -1,4 +1,4 @@
-from mysqlconnection import connectToMySQL
+from mysqlconecction import connectToMySQL
 
 class Mascota:
     def __init__(self, data):
