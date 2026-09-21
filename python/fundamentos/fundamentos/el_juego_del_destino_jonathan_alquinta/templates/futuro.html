@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Destino Revelado</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="tarjeta">
+        <header class="encabezado">
+            <div class="badge-icono badge-sol">⚙️</div>
+            <h1>Tu Destino ha sido Revelado</h1>
+            <p>Las estrellas han hablado, {{ nombre }}</p>
+        </header>
+
+        <section class="cuerpo">
+            <div class="alerta-prediccion">
+                <span class="estrella">⭐</span>
+                <p>{{ prediccion }}</p>
+            </div>
+
+            <div class="rejilla-detalles">
+                <div class="caja-detalle">
+                    <h3>🎨 Tu Color</h3>
+                    <div class="muestra-color" style="--c: {{ color }}; background-color: var(--c);"></div>
+                    <p>Tu preferencia por el color <strong>{{ color }}</strong> revela tu afinidad con la <strong>{{ sig_color }}</strong>.</p>
+                </div>
+
+                <div class="caja-detalle">
+                    <h3>🐾 Tu Animal</h3>
+                    <p>Tu conexión con el <strong>{{ animal }}</strong> simboliza tu naturaleza de <strong>{{ sig_animal }}</strong>.</p>
+                </div>
+            </div>
+
+            <div class="seccion-suerte">
+                <h2>Tu número de la suerte</h2>
+                <div class="badge-numero">{{ numero_suerte }}</div>
+                <p>Este número te acompañará en momentos importantes.</p>
+            </div>
+
+            <div class="alerta-edad">
+                <p>A tus <strong>{{ edad }} años</strong>, estás en un momento favorable para aprovechar nuevas oportunidades.</p>
+            </div>
+
+            <a href="{{ url_for('index') }}" class="btn-principal">↻ Consultar de nuevo</a>
+
+            <footer class="pie-tarjeta">
+                Las estrellas te han hablado hoy: {{ nombre }}.
+            </footer>
+        </section>
+    </div>
+</body>
+</html>
