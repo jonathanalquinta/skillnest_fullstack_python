@@ -11,7 +11,7 @@ from flask import (
 )
 
 
-from usuario import Usuario
+from usuarios import Usuario
 
 
 # ==========================================================
@@ -61,7 +61,7 @@ def nuevo_usuario():
     """
 
     return render_template(
-        "usuario_nuevo.html"
+        "usuarios_nuevo.html"
     )
 
 
