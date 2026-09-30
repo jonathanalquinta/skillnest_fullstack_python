@@ -5,6 +5,8 @@ name = "pypi"
 
 [packages]
 bcrypt = "*"
+flask-bcrypt = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
