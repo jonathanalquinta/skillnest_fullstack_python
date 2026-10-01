@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<h2>Agregar Nuevo Libro</h2>
+
+{% with msgs = get_flashed_messages(category_filter=['libro']) %}
+    {% if msgs %}
+        {% for msg in msgs %}
+            <div class="alert alert-danger py-1">{{ msg }}</div>
+        {% endfor %}
+    {% endif %}
+{% endwith %}
+
+<form action="/libros/nuevo" method="POST" class="col-md-6 mt-3">
+    <div class="mb-3">
+        <label>Título:</label>
+        <input type="text" name="titulo" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Autor:</label>
+        <input type="text" name="autor" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Género:</label>
+        <select name="genero" class="form-select" required>
+            <option value="">Selecciona un género</option>
+            <option value="Novela">Novela</option>
+            <option value="Fábula">Fábula</option>
+            <option value="Ciencia Ficción">Ciencia Ficción</option>
+            <option value="Romance">Romance</option>
+            <option value="Desarrollo Personal">Desarrollo Personal</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label>Fecha de publicación:</label>
+        <input type="date" name="fecha_publicacion" class="form-control" required>
+    </div>
+    <div class="mb-3">
+        <label>Descripción:</label>
+        <textarea name="descripcion" class="form-control" rows="4" required></textarea>
+    </div>
+    <button type="submit" class="btn btn-dark">Guardar</button>
+    <a href="/libros" class="btn btn-secondary">Cancelar</a>
+</form>
+{% endblock %}

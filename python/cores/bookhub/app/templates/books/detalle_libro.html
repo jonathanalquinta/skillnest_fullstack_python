@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<div class="row">
+    <div class="col-md-8">
+        <div class="card p-4">
+            <div class="d-flex">
+                <div class="bg-secondary text-white d-flex align-items-center justify-content-center me-4" style="width: 120px; height: 150px;">
+                    📷
+                </div>
+                <div>
+                    <h3>{{ libro.titulo }}</h3>
+                    <p class="mb-1"><strong>Autor:</strong> {{ libro.autor }}</p>
+                    <p class="mb-1"><strong>Género:</strong> {{ libro.genero }}</p>
+                    <p class="mb-1"><strong>Publicado por:</strong> {{ libro.publicado_por }}</p>
+                    <p class="mb-3"><strong>Fecha:</strong> {{ libro.fecha_publicacion }}</p>
+
+                    {% if not es_favorito %}
+                    <form action="/favoritos/agregar/{{ libro.id }}" method="POST">
+                        <button type="submit" class="btn btn-outline-dark btn-sm">🖤 Agregar a Favoritos</button>
+                    </form>
+                    {% endif %}
+                </div>
+            </div>
+            <hr>
+            <p><strong>Descripción:</strong> {{ libro.descripcion }}</p>
+        </div>
+
+        <div class="mt-4">
+            <h5>Usuarios que agregaron este libro a favoritos ({{ usuarios_fav|length }})</h5>
+            <ul class="list-group list-group-flush col-md-6">
+                {% for u in usuarios_fav %}
+                <li class="list-group-item">👤 {{ u.nombre }} {{ u.apellido }}</li>
+                {% else %}
+                <li class="list-group-item text-muted">Aún nadie ha agregado este libro.</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <a href="/libros" class="btn btn-link mt-3 p-0">← Volver a Mis Libros</a>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block contenido %}
+<h2>Mis Libros Favoritos</h2>
+
+<table class="table table-bordered table-striped mt-3 align-middle">
+    <thead class="table-secondary">
+        <tr>
+            <th>Título</th>
+            <th>Autor</th>
+            <th>Género</th>
+            <th>Fecha</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for libro in libros %}
+        <tr>
+            <td>{{ libro.titulo }}</td>
+            <td>{{ libro.autor }}</td>
+            <td>{{ libro.genero }}</td>
+            <td>{{ libro.fecha_publicacion }}</td>
+            <td><a href="/libros/{{ libro.id }}">Ver</a></td>
+        </tr>
+        {% else %}
+        <tr><td colspan="5" class="text-center">No has guardado libros en favoritos.</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
