@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>CinePedia - Ver Peli</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body class="container py-4">
+    <div class="d-flex justify-content-end mb-3">
+        <a href="/cine" class="btn btn-link">Inicio</a>
+        <a href="/logout" class="btn btn-link text-danger">Cerrar Sesión</a>
+    </div>
+
+    <div class="border p-4 rounded mb-4">
+        <h1>{{ pelicula.titulo }}</h1>
+        <p class="text-muted mb-2">Publicado por: {{ pelicula.creador_nombre }}</p>
+        <p class="mb-1"><strong>Director:</strong> {{ pelicula.director }}</p>
+        <p class="mb-3"><strong>Fecha:</strong> {{ pelicula.fecha_estreno }}</p>
+        <p class="mb-0"><strong>Sinopsis:</strong> {{ pelicula.sinopsis }}</p>
+    </div>
+
+    <!-- Sección de Comentarios (BONUS) -->
+    <div class="border p-4 rounded bg-light col-md-8">
+        {% if session['usuario_id'] != pelicula.usuario_id %}
+        <form action="/comentarios/crear" method="POST" class="d-flex mb-3">
+            <input type="hidden" name="pelicula_id" value="{{ pelicula.id }}">
+            <input type="text" class="form-control me-2" name="contenido" placeholder="Escribe un comentario..." required>
+            <button type="submit" class="btn btn-outline-dark">Enviar</button>
+        </form>
+        {% endif %}
+
+        {% with messages = get_flashed_messages(category_filter=['error_comentario']) %}
+          {% if messages %}
+            <div class="text-danger mb-2">
+              {% for message in messages %}
+                <p class="m-0">{{ message }}</p>
+              {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+
+        <div class="list-group">
+            {% for comentario in comentarios %}
+            <div class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center mb-1">
+                    <span><strong>{{ comentario.usuario_nombre }}</strong> - {{ comentario.created_at.strftime('%d de %B') }}</span>
+                    {% if session['usuario_id'] == comentario.usuario_id %}
+                    <a href="/comentarios/borrar/{{ comentario.id }}?pelicula_id={{ pelicula.id }}" class="btn btn-danger btn-sm">Borrar</a>
+                    {% endif %}
+                </div>
+                <p class="mb-0 text-secondary">{{ comentario.contenido }}</p>
+            </div>
+            {% else %}
+            <p class="text-muted m-0">Aún no hay comentarios en esta película.</p>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html> 

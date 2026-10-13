@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+:root {
+    --bg-main: #121214;
+    --bg-card: #1a1a1e;
+    --bg-input: #26262c;
+    --accent-gold: #f5c518;
+    --accent-gold-hover: #d4a307;
+    --text-primary: #f5f5f7;
+    --text-muted: #a1a1aa;
+    --danger-red: #e50914;
+    --border-color: #2e2e35;
+}
+
+body {
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+}
+
+/* Encabezados y Títulos */
+h1, h2, h3, h4 {
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--text-primary);
+}
+
+h1 {
+    color: var(--accent-gold);
+    text-shadow: 0 0 12px rgba(245, 197, 24, 0.2);
+}
+
+/* Tarjetas y Contenedores */
+.card-cinema,
+.border.p-4,
+.col-md-6,
+.bg-light {
+    background-color: var(--bg-card) !important;
+    border: 1px solid var(--border-color) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+/* Formularios e Inputs */
+.form-control, 
+.form-select, 
+textarea {
+    background-color: var(--bg-input) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    border-radius: 8px !important;
+    padding: 0.65rem 1rem;
+    transition: all 0.2s ease-in-out;
+}
+
+.form-control:focus, 
+textarea:focus {
+    border-color: var(--accent-gold) !important;
+    box-shadow: 0 0 0 3px rgba(245, 197, 24, 0.2) !important;
+}
+
+.form-label {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* Botones Estilizados */
+.btn-outline-dark,
+.btn-primary {
+    background-color: var(--accent-gold) !important;
+    color: #000000 !important;
+    border: none !important;
+    font-weight: 600;
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    transition: transform 0.15s ease, background-color 0.2s ease;
+}
+
+.btn-outline-dark:hover,
+.btn-primary:hover {
+    background-color: var(--accent-gold-hover) !important;
+    transform: translateY(-1px);
+}
+
+.btn-danger {
+    background-color: var(--danger-red) !important;
+    border: none !important;
+    font-weight: 600;
+}
+
+.btn-link {
+    color: var(--accent-gold) !important;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Tablas */
+.table {
+    color: var(--text-primary) !important;
+    border-color: var(--border-color) !important;
+}
+
+.table thead {
+    background-color: #1f1f24 !important;
+    color: var(--accent-gold) !important;
+}
+
+.table thead th {
+    border-bottom: 2px solid var(--border-color) !important;
+    padding: 1rem;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.table tbody tr {
+    background-color: var(--bg-card) !important;
+    transition: background-color 0.2s ease;
+}
+
+.table tbody tr:hover {
+    background-color: #23232a !important;
+}
+
+.table td {
+    padding: 0.9rem 1rem;
+    vertical-align: middle;
+    border-color: var(--border-color) !important;
+}
+
+/* Enlaces globales dentro de tablas y vistas */
+a {
+    color: var(--accent-gold);
+    text-decoration: none;
+    transition: color 0.15s ease;
+}
+
+a:hover {
+    color: var(--accent-gold-hover);
+}
+
+a.text-danger {
+    color: var(--danger-red) !important;
+}
+
+/* Alertas de Error */
+.alert-danger {
+    background-color: rgba(229, 9, 20, 0.15) !important;
+    border: 1px solid var(--danger-red) !important;
+    color: #ff6b6b !important;
+    border-radius: 8px;
+}
+
+/* Lista de Comentarios */
+.list-group-item {
+    background-color: var(--bg-input) !important;
+    border: 1px solid var(--border-color) !important;
+    color: var(--text-primary) !important;
+    border-radius: 8px !important;
+    margin-bottom: 8px;
+}
+
+/* Scrollbar Personalizada */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--bg-main);
+}
+::-webkit-scrollbar-thumb {
+    background: #33333b;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--accent-gold);
+}

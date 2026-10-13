@@ -1,4 +1,7 @@
 from flask import Flask
+from flask_bcrypt import Bcrypt
 
 app = Flask(__name__)
-app.secret_key = "clave_secreta_super_segura"
+app.secret_key = "cinepedia_llave_secreta_prod"
+
+bcrypt = Bcrypt(app)
