@@ -48,7 +48,7 @@ class MySQLConnection:
             finally:
                 self.connection.close()
 
-# INSTANCIACIÓN (Soporta ambos nombres para importación)
+# instanciacion (Soporta ambos nombres para importación)
 def connectToMySQL(db=None):
     return MySQLConnection(db)
 
