@@ -50,7 +50,7 @@ class Usuario:
         password = form_data.get('password', '')
         confirm_password = form_data.get('confirm_password', '')
 
-        # Nombre y apellido deben tener al menos 2 caracteres[cite: 1]
+        # Nombre y apellido deben tener al menos 2 caracteres
         if len(nombre) < 2:
             flash("El nombre debe tener al menos 2 caracteres.", "registro")
             is_valid = False
@@ -59,17 +59,17 @@ class Usuario:
             flash("El apellido debe tener al menos 2 caracteres.", "registro")
             is_valid = False
 
-        # Formato de email válido[cite: 1]
+        # Formato de email válido
         if not EMAIL_REGEX.match(email):
             flash("El formato del correo electrónico no es válido.", "registro")
             is_valid = False
 
-        # Email no repetido en la BD[cite: 1]
+        # Email no repetido en la BD
         if Usuario.obtener_por_email(email):
             flash("El correo electrónico ya se encuentra registrado.", "registro")
             is_valid = False
 
-        # Contraseña y confirmación iguales[cite: 1]
+        # Contraseña y confirmación iguales
         if len(password) < 1 or password != confirm_password:
             flash("Las contraseñas no coinciden.", "registro")
             is_valid = False
@@ -81,13 +81,13 @@ class Usuario:
         email = form_data.get('email', '').strip()
         password = form_data.get('password', '')
 
-        # Email registrado en BD[cite: 1]
+        # Email registrado en BD
         usuario = Usuario.obtener_por_email(email)
         if not usuario:
             flash("Credenciales inválidas.", "login")
             return False
 
-        # Contraseña correspondiente[cite: 1]
+        # Contraseña correspondiente
         if not bcrypt.check_password_hash(usuario.password, password):
             flash("Credenciales inválidas.", "login")
             return False

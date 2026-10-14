@@ -103,7 +103,7 @@ class Pelicula:
             flash("Sinopsis no puede estar vacía", "error")
             is_valid = False
 
-        # El nombre debe ser único, pero puede ser el mismo al editar[cite: 2, 3]
+        # El nombre debe ser único, pero puede ser el mismo al editar
         pelicula_existente = Pelicula.obtener_por_titulo(titulo)
         if pelicula_existente:
             if pelicula_id is None or pelicula_existente.id != int(pelicula_id):

@@ -5,7 +5,7 @@ from flask_app.models.comentario import Comentario
 
 @app.route('/cine')
 def dashboard():
-    # Requiere iniciar sesión[cite: 1]
+    # Requiere iniciar sesión
     if 'usuario_id' not in session:
         return redirect('/')
     
@@ -14,7 +14,7 @@ def dashboard():
 
 @app.route('/cine/nueva')
 def nueva_pelicula():
-    # Requiere iniciar sesión[cite: 2]
+    # Requiere iniciar sesión
     if 'usuario_id' not in session:
         return redirect('/')
     
@@ -26,7 +26,7 @@ def crear_pelicula():
     if 'usuario_id' not in session:
         return redirect('/')
 
-    # Almacena la sinopsis y datos ingresados para preservarlos en caso de errores[cite: 2]
+    # Almacena la sinopsis y datos ingresados para preservarlos en caso de errores
     if not Pelicula.validar_pelicula(request.form):
         session['draft_nueva'] = request.form
         return redirect('/cine/nueva')
@@ -43,7 +43,7 @@ def crear_pelicula():
 
 @app.route('/cine/<int:id>')
 def ver_pelicula(id):
-    # Requiere iniciar sesión[cite: 2]
+    # Requiere iniciar sesión
     if 'usuario_id' not in session:
         return redirect('/')
 
@@ -56,13 +56,13 @@ def ver_pelicula(id):
 
 @app.route('/cine/editar/<int:id>')
 def editar_pelicula(id):
-    # Requiere iniciar sesión[cite: 3]
+    # Requiere iniciar sesión
     if 'usuario_id' not in session:
         return redirect('/')
 
     pelicula = Pelicula.obtener_por_id(id)
     
-    # Solamente el creador puede editar[cite: 1]
+    # Solamente el creador puede editar
     if not pelicula or pelicula.usuario_id != session['usuario_id']:
         return redirect('/cine')
 
@@ -78,7 +78,7 @@ def actualizar_pelicula(id):
     if not pelicula or pelicula.usuario_id != session['usuario_id']:
         return redirect('/cine')
 
-    # Almacena los campos ingresados si ocurren errores[cite: 3]
+    # Almacena los campos ingresados si ocurren errores
     if not Pelicula.validar_pelicula(request.form, pelicula_id=id):
         session['draft_editar'] = request.form
         return redirect(f'/cine/editar/{id}')
@@ -99,7 +99,7 @@ def borrar_pelicula(id):
         return redirect('/')
 
     pelicula = Pelicula.obtener_por_id(id)
-    # Solamente borra si el usuario es el creador[cite: 1]
+    # Solamente borra si el usuario es el creador
     if pelicula and pelicula.usuario_id == session['usuario_id']:
         Pelicula.eliminar(id)
 

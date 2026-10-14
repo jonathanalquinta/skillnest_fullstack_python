@@ -30,6 +30,6 @@ def login():
 
 @app.route('/logout')
 def logout():
-    # Borra la sesión y redirige al Login[cite: 1]
+    # Borra la sesión y redirige al Login
     session.clear()
     return redirect('/')

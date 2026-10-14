@@ -11,7 +11,7 @@ def crear_comentario():
     pelicula_id = request.form.get('pelicula_id')
     pelicula = Pelicula.obtener_por_id(pelicula_id)
 
-    # Un usuario no puede comentar su propia película[cite: 3]
+    # Un usuario no puede comentar su propia película
     if pelicula and pelicula.usuario_id == session['usuario_id']:
         flash("Un usuario no puede comentar su propia película.", "error_comentario")
         return redirect(f'/cine/{pelicula_id}')
@@ -36,7 +36,7 @@ def borrar_comentario(id):
     pelicula_id = request.args.get('pelicula_id')
     comentario = Comentario.obtener_por_id(id)
 
-    # El botón y acción de borrar le pertenece solo al dueño del comentario[cite: 3]
+    # El botón y acción de borrar le pertenece solo al dueño del comentario
     if comentario and comentario.usuario_id == session['usuario_id']:
         Comentario.eliminar(id)
 
