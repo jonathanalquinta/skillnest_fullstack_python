@@ -1,0 +1,963 @@
+<!DOCTYPE html>
+<html lang="es" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jonathan Alquinta - Fullstack Jr. | 4to Medio</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              dark: '#0b1120',
+              card: '#111827',
+              border: '#1f2937',
+              accent: '#0ea5e9',
+              accentHover: '#0284c7',
+              text: '#f3f4f6',
+              muted: '#9ca3af'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <style>
+    /* Custom Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0b1120;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1f2937;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #0ea5e9;
+    }
+  </style>
+</head>
+<body class="bg-[#0b1120] text-gray-100 font-sans antialiased selection:bg-sky-500 selection:text-white transition-colors duration-300">
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-50 backdrop-blur-md bg-[#0b1120]/80 border-b border-gray-800/60">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Logo & Profile Badge -->
+      <a href="#inicio" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-xl bg-sky-600 text-white font-bold text-lg flex items-center justify-center shadow-lg shadow-sky-500/20 group-hover:scale-105 transition-transform">
+          JA
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-gray-100 tracking-wide text-sm sm:text-base group-hover:text-sky-400 transition-colors">
+            Jonathan Alquinta
+          </span>
+          <span class="text-[10px] sm:text-xs text-sky-400 font-mono tracking-wider uppercase">
+            FULLSTACK JR. · 4TO MEDIO
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Menu -->
+      <nav class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="#inicio" class="nav-link text-sky-400 hover:text-sky-300 transition-colors">Inicio</a>
+        <a href="#sobre-mi" class="nav-link text-gray-300 hover:text-sky-400 transition-colors">Sobre Mí</a>
+        <a href="#tecnologias" class="nav-link text-gray-300 hover:text-sky-400 transition-colors">Tecnologías</a>
+        <a href="#proyectos" class="nav-link text-gray-300 hover:text-sky-400 transition-colors">Proyectos</a>
+        <a href="#ejercicios" class="nav-link text-gray-300 hover:text-sky-400 transition-colors">Ejercicios</a>
+        <a href="#contacto" class="nav-link text-gray-300 hover:text-sky-400 transition-colors">Contacto</a>
+      </nav>
+
+      <!-- Right Action Buttons -->
+      <div class="flex items-center gap-3">
+        <!-- Theme Toggle -->
+        <button id="themeToggle" title="Cambiar Tema" class="p-2 rounded-xl bg-gray-800/60 border border-gray-700/50 hover:bg-gray-700/60 text-gray-300 hover:text-white transition-all">
+          <i data-lucide="moon" class="w-4 h-4"></i>
+        </button>
+
+        <!-- Main CTA Button -->
+        <a href="#contacto" class="hidden sm:flex items-center gap-2 bg-sky-500 hover:bg-sky-400 text-white px-4 py-2 rounded-xl text-sm font-semibold shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transition-all">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>Contactar</span>
+        </a>
+
+        <!-- Mobile Menu Button -->
+        <button id="mobileMenuBtn" class="md:hidden p-2 rounded-xl bg-gray-800/60 border border-gray-700/50 text-gray-300">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileMenu" class="hidden md:hidden bg-gray-900/95 border-b border-gray-800 px-4 py-4 space-y-3">
+      <a href="#inicio" class="mobile-nav-link block text-sky-400 font-medium text-sm">Inicio</a>
+      <a href="#sobre-mi" class="mobile-nav-link block text-gray-300 hover:text-sky-400 text-sm">Sobre Mí</a>
+      <a href="#tecnologias" class="mobile-nav-link block text-gray-300 hover:text-sky-400 text-sm">Tecnologías</a>
+      <a href="#proyectos" class="mobile-nav-link block text-gray-300 hover:text-sky-400 text-sm">Proyectos</a>
+      <a href="#ejercicios" class="mobile-nav-link block text-gray-300 hover:text-sky-400 text-sm">Ejercicios</a>
+      <a href="#contacto" class="mobile-nav-link block text-gray-300 hover:text-sky-400 text-sm">Contacto</a>
+      <a href="#contacto" class="flex items-center justify-center gap-2 bg-sky-500 text-white w-full py-2 rounded-xl text-sm font-semibold">
+        <i data-lucide="send" class="w-4 h-4"></i>
+        <span>Contactar</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section id="inicio" class="min-h-[calc(100vh-4rem)] flex items-center justify-center py-16 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center w-full">
+      
+      <!-- Left Content -->
+      <div class="lg:col-span-7 space-y-6">
+        <!-- Status Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-medium">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Estudiante de 4to Medio · Skillnest 2026
+        </div>
+
+        <!-- Main Title -->
+        <h1 class="text-4xl sm:text-6xl font-extrabold text-white tracking-tight leading-tight">
+          Hola, soy <br />
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-blue-400 to-indigo-400">
+            Jonathan Alquinta
+          </span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p class="text-xl sm:text-2xl font-semibold text-gray-300">
+          Programador Fullstack Jr. | Estudiante de 4to Medio
+        </p>
+
+        <!-- Description -->
+        <p class="text-gray-400 text-base sm:text-lg max-w-2xl leading-relaxed">
+          Apasionado por el desarrollo web tanto en el Frontend como en el Backend. Enfocado en la creación de aplicaciones funcionales, integración de APIs y buenas prácticas con Git y GitHub.
+        </p>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap items-center gap-4 pt-2">
+          <a href="#proyectos" class="flex items-center gap-2 bg-sky-500 hover:bg-sky-400 text-white px-5 py-3 rounded-xl font-semibold text-sm shadow-lg shadow-sky-500/25 hover:shadow-sky-500/40 transition-all">
+            <i data-lucide="code" class="w-4 h-4"></i>
+            <span>Ver Proyectos</span>
+          </a>
+          <a href="#contacto" class="flex items-center gap-2 bg-gray-800/80 hover:bg-gray-700/80 border border-gray-700 text-gray-200 px-5 py-3 rounded-xl font-semibold text-sm transition-all">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            <span>Contactar</span>
+          </a>
+          <!-- Socials -->
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="p-3 bg-gray-800/80 hover:bg-gray-700/80 border border-gray-700 text-gray-300 hover:text-white rounded-xl transition-all" title="LinkedIn">
+            <i data-lucide="linkedin" class="w-5 h-5"></i>
+          </a>
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="p-3 bg-gray-800/80 hover:bg-gray-700/80 border border-gray-700 text-gray-300 hover:text-white rounded-xl transition-all" title="GitHub">
+            <i data-lucide="github" class="w-5 h-5"></i>
+          </a>
+        </div>
+
+        <!-- Quick Stats Footer -->
+        <div class="grid grid-cols-3 gap-4 pt-8 border-t border-gray-800/80">
+          <div>
+            <h4 class="text-lg font-bold text-white">4to Medio</h4>
+            <p class="text-xs text-gray-400">Etapa Escolar</p>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold text-white">Fullstack</h4>
+            <p class="text-xs text-gray-400">Node & Web</p>
+          </div>
+          <div>
+            <h4 class="text-lg font-bold text-white">Skillnest</h4>
+            <p class="text-xs text-gray-400">Bootcamp 2026</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Interactive Code Card -->
+      <div class="lg:col-span-5">
+        <div class="bg-gray-900/90 border border-gray-800 rounded-2xl p-4 sm:p-6 shadow-2xl shadow-sky-500/10 font-mono text-sm relative group">
+          <!-- Window Bar -->
+          <div class="flex items-center justify-between pb-4 mb-4 border-b border-gray-800">
+            <div class="flex items-center gap-2">
+              <span class="w-3 h-3 rounded-full bg-red-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-yellow-500/80"></span>
+              <span class="w-3 h-3 rounded-full bg-green-500/80"></span>
+            </div>
+            <span class="text-xs text-gray-500">jonathan-profile.ts</span>
+            <i data-lucide="terminal" class="w-4 h-4 text-gray-500"></i>
+          </div>
+
+          <!-- Code Snippet -->
+          <div class="space-y-2 text-gray-300 text-xs sm:text-sm">
+            <p><span class="text-purple-400">interface</span> <span class="text-yellow-300">Desarrollador</span> {</p>
+            <p class="pl-4"><span class="text-sky-300">nombre</span>: <span class="text-emerald-400">'Jonathan Alquinta'</span>;</p>
+            <p class="pl-4"><span class="text-sky-300">educacion</span>: <span class="text-emerald-400">'4to Medio & Skillnest'</span>;</p>
+            <p class="pl-4"><span class="text-sky-300">especialidad</span>: <span class="text-emerald-400">'Fullstack Junior'</span>;</p>
+            <p class="pl-4"><span class="text-sky-300">stack</span>: [<span class="text-emerald-400">'HTML'</span>, <span class="text-emerald-400">'CSS'</span>, <span class="text-emerald-400">'JS'</span>, <span class="text-emerald-400">'Node'</span>, <span class="text-emerald-400">'SQL'</span>];</p>
+            <p class="pl-4"><span class="text-sky-300">estado</span>: <span class="text-emerald-400">'Buscando Oportunidades Laborales'</span>;</p>
+            <p>}</p>
+          </div>
+
+          <!-- Terminal Output -->
+          <div class="mt-6 pt-4 border-t border-gray-800/80 flex items-center justify-between text-xs text-gray-400">
+            <span class="flex items-center gap-2 text-emerald-400">
+              <i data-lucide="check-circle" class="w-4 h-4"></i> Git repository initialized
+            </span>
+            <span class="text-gray-500">v1.0.0</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SOBRE MÍ SECTION -->
+  <section id="sobre-mi" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-800/50 bg-gray-950/40">
+    <div class="max-w-7xl mx-auto space-y-12">
+      <!-- Section Header -->
+      <div class="text-center space-y-3">
+        <span class="text-xs font-mono font-bold tracking-widest text-sky-400 uppercase">PERFIL & TRAYECTORIA</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Sobre Mí</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
+          Combinando mis estudios escolares de 4to medio con la formación técnica intensiva en desarrollo web.
+        </p>
+      </div>
+
+      <!-- Grid Content -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- Text Bio -->
+        <div class="lg:col-span-7 space-y-4 text-gray-300 text-sm sm:text-base leading-relaxed">
+          <p>
+            ¡Hola! Mi nombre es <strong class="text-white">Jonathan Alquinta</strong>. Actualmente me encuentro cursando mi último año escolar (<span class="text-sky-400 font-medium">4to Medio</span>) mientras me capacito de manera intensiva en el bootcamp <strong class="text-sky-400">Skillnest</strong> como Programador Fullstack Junior.
+          </p>
+          <p>
+            Desde que descubrí la programación, me fascinó la capacidad de convertir líneas de código en soluciones interactivas y herramientas útiles. Me apasiona tanto la maquetación detallada y estética en el Frontend como la lógica de servidores, bases de datos y consumo de APIs en el Backend.
+          </p>
+          <p>
+            Mi objetivo actual es seguir fortaleciendo mis habilidades técnicas, colaborar en proyectos reales y dar mis primeros pasos profesionales en la industria del desarrollo de software.
+          </p>
+
+          <!-- Cards Sub-grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4">
+            <div class="bg-gray-900/60 border border-gray-800 p-4 rounded-xl space-y-2">
+              <div class="flex items-center gap-2 text-sky-400 font-bold text-sm">
+                <i data-lucide="target" class="w-4 h-4"></i>
+                <span>Metas a Corto Plazo</span>
+              </div>
+              <p class="text-xs text-gray-400 leading-normal">
+                Consolidar mi stack Fullstack y aportar en proyectos colaborativos o prácticas.
+              </p>
+            </div>
+            <div class="bg-gray-900/60 border border-gray-800 p-4 rounded-xl space-y-2">
+              <div class="flex items-center gap-2 text-sky-400 font-bold text-sm">
+                <i data-lucide="git-branch" class="w-4 h-4"></i>
+                <span>Metodología</span>
+              </div>
+              <p class="text-xs text-gray-400 leading-normal">
+                Uso constante de Git/GitHub, commits claros, diseño modular y código limpio.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Timeline Card -->
+        <div class="lg:col-span-5 bg-gray-900/80 border border-gray-800 p-6 rounded-2xl space-y-6">
+          <h3 class="text-lg font-bold text-white flex items-center gap-2">
+            <i data-lucide="graduation-cap" class="w-5 h-5 text-sky-400"></i>
+            Formación Actual
+          </h3>
+
+          <div class="space-y-6 relative border-l-2 border-gray-800 pl-6 ml-2">
+            <!-- Item 1 -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-sky-500 border-4 border-gray-900"></span>
+              <h4 class="font-bold text-white text-sm">4to Medio</h4>
+              <p class="text-xs text-gray-400">Enseñanza Media en Curso (Chile)</p>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="relative">
+              <span class="absolute -left-[31px] top-1 w-4 h-4 rounded-full bg-indigo-500 border-4 border-gray-900"></span>
+              <h4 class="font-bold text-white text-sm">Bootcamp Skillnest</h4>
+              <p class="text-xs text-gray-400">Desarrollo Web Fullstack (HTML, CSS, JS, Git)</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- TECNOLOGÍAS SECTION -->
+  <section id="tecnologias" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-800/50">
+    <div class="max-w-7xl mx-auto space-y-12">
+      <!-- Section Header -->
+      <div class="text-center space-y-3">
+        <span class="text-xs font-mono font-bold tracking-widest text-sky-400 uppercase">STACK TÉCNICO</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Tecnologías & Herramientas</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto text-sm sm:text-base">
+          Habilidades desarrolladas durante mi proceso de formación escolar y en el bootcamp.
+        </p>
+      </div>
+
+      <!-- Skills Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Frontend Card -->
+        <div class="bg-gray-900/80 border border-gray-800 p-6 rounded-2xl space-y-6 hover:border-sky-500/30 transition-all">
+          <div class="flex items-center gap-3">
+            <div class="p-3 bg-sky-500/10 text-sky-400 rounded-xl">
+              <i data-lucide="layout" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-lg">Frontend</h3>
+              <p class="text-xs text-gray-400">Interfaces & Responsive</p>
+            </div>
+          </div>
+
+          <!-- Progress Bars -->
+          <div class="space-y-4 text-xs font-medium">
+            <div>
+              <div class="flex justify-between text-gray-300 mb-1">
+                <span>HTML5 Semántico</span>
+                <span class="text-sky-400">90%</span>
+              </div>
+              <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                <div class="bg-sky-500 h-full rounded-full transition-all duration-1000" style="width: 90%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-gray-300 mb-1">
+                <span>CSS3 & Tailwind</span>
+                <span class="text-sky-400">85%</span>
+              </div>
+              <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                <div class="bg-sky-500 h-full rounded-full transition-all duration-1000" style="width: 85%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-gray-300 mb-1">
+                <span>JavaScript ES6+</span>
+                <span class="text-sky-400">80%</span>
+              </div>
+              <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                <div class="bg-sky-500 h-full rounded-full transition-all duration-1000" style="width: 80%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Backend Card -->
+        <div class="bg-gray-900/80 border border-gray-800 p-6 rounded-2xl space-y-6 hover:border-indigo-500/30 transition-all">
+          <div class="flex items-center gap-3">
+            <div class="p-3 bg-indigo-500/10 text-indigo-400 rounded-xl">
+              <i data-lucide="server" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-lg">Backend & Datos</h3>
+              <p class="text-xs text-gray-400">Servidores & APIs</p>
+            </div>
+          </div>
+
+          <!-- Progress Bars -->
+          <div class="space-y-4 text-xs font-medium">
+            <div>
+              <div class="flex justify-between text-gray-300 mb-1">
+                <span>Node.js / Express</span>
+                <span class="text-indigo-400">75%</span>
+              </div>
+              <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                <div class="bg-indigo-500 h-full rounded-full transition-all duration-1000" style="width: 75%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-gray-300 mb-1">
+                <span>SQL & PostgreSQL</span>
+                <span class="text-indigo-400">70%</span>
+              </div>
+              <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                <div class="bg-indigo-500 h-full rounded-full transition-all duration-1000" style="width: 70%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-gray-300 mb-1">
+                <span>APIs RESTful</span>
+                <span class="text-indigo-400">80%</span>
+              </div>
+              <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                <div class="bg-indigo-500 h-full rounded-full transition-all duration-1000" style="width: 80%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Herramientas Card -->
+        <div class="bg-gray-900/80 border border-gray-800 p-6 rounded-2xl space-y-6 hover:border-emerald-500/30 transition-all">
+          <div class="flex items-center gap-3">
+            <div class="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl">
+              <i data-lucide="wrench" class="w-6 h-6"></i>
+            </div>
+            <div>
+              <h3 class="font-bold text-white text-lg">Herramientas</h3>
+              <p class="text-xs text-gray-400">Control & Diseño</p>
+            </div>
+          </div>
+
+          <!-- Progress Bars -->
+          <div class="space-y-4 text-xs font-medium">
+            <div>
+              <div class="flex justify-between text-gray-300 mb-1">
+                <span>Git & GitHub</span>
+                <span class="text-emerald-400">85%</span>
+              </div>
+              <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                <div class="bg-emerald-500 h-full rounded-full transition-all duration-1000" style="width: 85%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-gray-300 mb-1">
+                <span>Figma UI</span>
+                <span class="text-emerald-400">75%</span>
+              </div>
+              <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                <div class="bg-emerald-500 h-full rounded-full transition-all duration-1000" style="width: 75%;"></div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex justify-between text-gray-300 mb-1">
+                <span>Responsive Design</span>
+                <span class="text-emerald-400">90%</span>
+              </div>
+              <div class="w-full bg-gray-800 h-2 rounded-full overflow-hidden">
+                <div class="bg-emerald-500 h-full rounded-full transition-all duration-1000" style="width: 90%;"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PROYECTOS SECTION -->
+  <section id="proyectos" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-800/50 bg-gray-950/40">
+    <div class="max-w-7xl mx-auto space-y-12">
+      
+      <!-- Section Header with Filter Tabs -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="space-y-3">
+          <span class="text-xs font-mono font-bold tracking-widest text-sky-400 uppercase">PORTAFOLIO PRÁCTICO</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Proyectos Destacados</h2>
+          <p class="text-gray-400 max-w-xl text-sm sm:text-base">
+            Explora mis aplicaciones desarrolladas con enfoque en código limpio y usabilidad.
+          </p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="flex flex-wrap items-center gap-2 bg-gray-900 p-1.5 rounded-xl border border-gray-800 self-start md:self-auto">
+          <button class="filter-btn px-4 py-1.5 rounded-lg text-xs font-bold transition-all bg-sky-500 text-white" data-filter="all">Todos</button>
+          <button class="filter-btn px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-gray-400 hover:text-white" data-filter="fullstack">Fullstack</button>
+          <button class="filter-btn px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-gray-400 hover:text-white" data-filter="frontend">Frontend</button>
+          <button class="filter-btn px-4 py-1.5 rounded-lg text-xs font-bold transition-all text-gray-400 hover:text-white" data-filter="ejercicios">Ejercicios</button>
+        </div>
+      </div>
+
+      <!-- Projects Grid -->
+      <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        
+        <!-- Project 1 (Fullstack) -->
+        <div class="project-card bg-gray-900/90 border border-gray-800 rounded-2xl p-6 flex flex-col justify-between space-y-6 hover:border-sky-500/40 transition-all group" data-category="fullstack">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <span class="px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-400 text-xs font-mono font-semibold">Fullstack</span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">DevStore - Tienda Online</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">
+              Catálogo interactivo con servidor Node.js/Express, persistencia de datos en PostgreSQL, carrito de compras dinámico y consumo de API de pagos...
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-2">
+              <span class="px-2 py-0.5 rounded bg-gray-800 text-[11px] font-mono text-gray-300">Node.js</span>
+              <span class="px-2 py-0.5 rounded bg-gray-800 text-[11px] font-mono text-gray-300">Express</span>
+              <span class="px-2 py-0.5 rounded bg-gray-800 text-[11px] font-mono text-gray-300">SQL</span>
+              <span class="px-2 py-0.5 rounded bg-gray-800 text-[11px] font-mono text-gray-300">JS ES6</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-4 border-t border-gray-800/80">
+            <button class="open-modal-btn text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1" data-id="devstore">
+              <i data-lucide="info" class="w-4 h-4"></i> Detalle
+            </button>
+            <div class="flex items-center gap-2">
+              <a href="https://github.com" target="_blank" class="p-2 text-gray-400 hover:text-white transition-colors" title="Ver Código">
+                <i data-lucide="github" class="w-4 h-4"></i>
+              </a>
+              <a href="#" class="p-2 text-sky-400 hover:text-sky-300 transition-colors" title="Demo En Vivo">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 (Frontend) -->
+        <div class="project-card bg-gray-900/90 border border-gray-800 rounded-2xl p-6 flex flex-col justify-between space-y-6 hover:border-sky-500/40 transition-all group" data-category="frontend">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <span class="px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 text-xs font-mono font-semibold">Frontend</span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">WeatherDash - Clima en Vivo</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">
+              Dashboard meteorológico interactivo que consume la API de OpenWeatherMap en tiempo real. Manejo asíncrono, buscador dinámico por ciudad y diseño...
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-2">
+              <span class="px-2 py-0.5 rounded bg-gray-800 text-[11px] font-mono text-gray-300">HTML5</span>
+              <span class="px-2 py-0.5 rounded bg-gray-800 text-[11px] font-mono text-gray-300">Tailwind</span>
+              <span class="px-2 py-0.5 rounded bg-gray-800 text-[11px] font-mono text-gray-300">Fetch API</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-4 border-t border-gray-800/80">
+            <button class="open-modal-btn text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1" data-id="weather">
+              <i data-lucide="info" class="w-4 h-4"></i> Detalle
+            </button>
+            <div class="flex items-center gap-2">
+              <a href="https://github.com" target="_blank" class="p-2 text-gray-400 hover:text-white transition-colors" title="Ver Código">
+                <i data-lucide="github" class="w-4 h-4"></i>
+              </a>
+              <a href="#" class="p-2 text-sky-400 hover:text-sky-300 transition-colors" title="Demo En Vivo">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 3 (Ejercicios) -->
+        <div class="project-card bg-gray-900/90 border border-gray-800 rounded-2xl p-6 flex flex-col justify-between space-y-6 hover:border-sky-500/40 transition-all group" data-category="ejercicios">
+          <div class="space-y-4">
+            <div class="flex justify-between items-start">
+              <span class="px-2.5 py-1 rounded-md bg-emerald-500/10 text-emerald-400 text-xs font-mono font-semibold">Ejercicios JS</span>
+            </div>
+            <h3 class="text-xl font-bold text-white group-hover:text-sky-400 transition-colors">TaskManager Skillnest</h3>
+            <p class="text-xs text-gray-400 leading-relaxed">
+              Ejercicio integrador realizado en Skillnest. Permite crear, filtrar, marcar como completadas y guardar tareas en el LocalStorage del navegador.
+            </p>
+            <div class="flex flex-wrap gap-1.5 pt-2">
+              <span class="px-2 py-0.5 rounded bg-gray-800 text-[11px] font-mono text-gray-300">JS Vanilla</span>
+              <span class="px-2 py-0.5 rounded bg-gray-800 text-[11px] font-mono text-gray-300">LocalStorage</span>
+              <span class="px-2 py-0.5 rounded bg-gray-800 text-[11px] font-mono text-gray-300">DOM Events</span>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between pt-4 border-t border-gray-800/80">
+            <button class="open-modal-btn text-xs font-semibold text-sky-400 hover:text-sky-300 flex items-center gap-1" data-id="taskmanager">
+              <i data-lucide="info" class="w-4 h-4"></i> Detalle
+            </button>
+            <div class="flex items-center gap-2">
+              <a href="https://github.com" target="_blank" class="p-2 text-gray-400 hover:text-white transition-colors" title="Ver Código">
+                <i data-lucide="github" class="w-4 h-4"></i>
+              </a>
+              <a href="#" class="p-2 text-sky-400 hover:text-sky-300 transition-colors" title="Demo En Vivo">
+                <i data-lucide="external-link" class="w-4 h-4"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- EJERCICIOS Y TAREAS (ACCORDION) SECTION -->
+  <section id="ejercicios" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-800/50">
+    <div class="max-w-4xl mx-auto space-y-10">
+      <!-- Section Header -->
+      <div class="text-center space-y-3">
+        <span class="text-xs font-mono font-bold tracking-widest text-sky-400 uppercase">EVIDENCIA DE APRENDIZAJE</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Tareas y Ejercicios Adicionales</h2>
+        <p class="text-gray-400 text-sm sm:text-base">
+          Prácticas de laboratorio, algoritmos y proyectos escolares que respaldan mi evolución en programación.
+        </p>
+      </div>
+
+      <!-- Accordion List -->
+      <div class="space-y-4">
+        
+        <!-- Accordion Item 1 -->
+        <div class="bg-gray-900/80 border border-gray-800 rounded-xl overflow-hidden transition-all">
+          <button class="accordion-header w-full px-6 py-4 flex items-center justify-between text-left font-semibold text-white hover:text-sky-400 transition-colors">
+            <span class="flex items-center gap-3 text-sm sm:text-base">
+              <i data-lucide="terminal" class="w-5 h-5 text-sky-400"></i>
+              Módulo JavaScript ES6+: Manipulación Avanzada del DOM
+            </span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transform transition-transform duration-200"></i>
+          </button>
+          <div class="accordion-content hidden px-6 pb-6 text-xs sm:text-sm text-gray-300 space-y-3 border-t border-gray-800/60 pt-4">
+            <p>Ejercicios prácticos centrados en eventos, delegación de eventos, modificación dinámica de clases CSS y persistencia de datos mediante Web Storage API.</p>
+            <div class="bg-gray-950 p-3 rounded-lg font-mono text-xs text-sky-300">
+              <code>document.querySelector('#btn').addEventListener('click', () => updateTask());</code>
+            </div>
+          </div>
+        </div>
+
+        <!-- Accordion Item 2 -->
+        <div class="bg-gray-900/80 border border-gray-800 rounded-xl overflow-hidden transition-all">
+          <button class="accordion-header w-full px-6 py-4 flex items-center justify-between text-left font-semibold text-white hover:text-sky-400 transition-colors">
+            <span class="flex items-center gap-3 text-sm sm:text-base">
+              <i data-lucide="git-pull-request" class="w-5 h-5 text-emerald-400"></i>
+              Proyecto Escolar 4to Medio: Algoritmos de Lógica
+            </span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transform transition-transform duration-200"></i>
+          </button>
+          <div class="accordion-content hidden px-6 pb-6 text-xs sm:text-sm text-gray-300 space-y-3 border-t border-gray-800/60 pt-4">
+            <p>Resolución de problemas de ordenamiento, validación de estructuras de control y manejo de arreglos en JavaScript para el proyecto escolar integrador.</p>
+          </div>
+        </div>
+
+        <!-- Accordion Item 3 -->
+        <div class="bg-gray-900/80 border border-gray-800 rounded-xl overflow-hidden transition-all">
+          <button class="accordion-header w-full px-6 py-4 flex items-center justify-between text-left font-semibold text-white hover:text-sky-400 transition-colors">
+            <span class="flex items-center gap-3 text-sm sm:text-base">
+              <i data-lucide="database" class="w-5 h-5 text-indigo-400"></i>
+              Laboratorio SQL: Consultas y Modelado Relacional
+            </span>
+            <i data-lucide="chevron-down" class="w-5 h-5 text-gray-400 transform transition-transform duration-200"></i>
+          </button>
+          <div class="accordion-content hidden px-6 pb-6 text-xs sm:text-sm text-gray-300 space-y-3 border-t border-gray-800/60 pt-4">
+            <p>Diseño de esquemas relacionales, creación de tablas con llaves primarias/foráneas y ejecución de JOINs complejos en PostgreSQL.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO SECTION -->
+  <section id="contacto" class="py-20 px-4 sm:px-6 lg:px-8 border-t border-gray-800/50 bg-gray-950/40">
+    <div class="max-w-7xl mx-auto space-y-12">
+      <!-- Section Header -->
+      <div class="text-center space-y-3">
+        <span class="text-xs font-mono font-bold tracking-widest text-sky-400 uppercase">COMUNICACIÓN DIRECTA</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-white">Hablemos</h2>
+        <p class="text-gray-400 max-w-xl mx-auto text-sm sm:text-base">
+          ¿Interesado en mi perfil como desarrollador Fullstack Jr.? Envíame un mensaje o escríbeme directamente a mi correo profesional.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        <!-- Left Contact Direct Links -->
+        <div class="lg:col-span-5 space-y-4">
+          
+          <!-- Email Copy Card -->
+          <div class="bg-gray-900/80 border border-gray-800 p-6 rounded-2xl space-y-4">
+            <div class="flex items-center gap-3">
+              <div class="p-3 bg-sky-500/10 text-sky-400 rounded-xl">
+                <i data-lucide="mail" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <span class="text-xs text-gray-400 font-mono">Correo Profesional</span>
+                <p id="emailText" class="text-sm sm:text-base font-bold text-white">jonathan.alquinta.dev@gmail.com</p>
+              </div>
+            </div>
+            <button id="copyEmailBtn" class="w-full py-2.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl text-xs font-semibold text-gray-200 flex items-center justify-center gap-2 transition-all">
+              <i data-lucide="copy" class="w-4 h-4"></i>
+              <span>Copiar Correo</span>
+            </button>
+          </div>
+
+          <!-- LinkedIn Card -->
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="block bg-gray-900/80 border border-gray-800 p-6 rounded-2xl hover:border-sky-500/40 transition-all group">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="p-3 bg-sky-500/10 text-sky-400 rounded-xl">
+                  <i data-lucide="linkedin" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-white text-sm group-hover:text-sky-400 transition-colors">Perfil de LinkedIn</h4>
+                  <p class="text-xs text-gray-400">Conectemos profesionalmente</p>
+                </div>
+              </div>
+              <i data-lucide="external-link" class="w-4 h-4 text-gray-500 group-hover:text-white transition-colors"></i>
+            </div>
+          </a>
+
+          <!-- GitHub Card -->
+          <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="block bg-gray-900/80 border border-gray-800 p-6 rounded-2xl hover:border-sky-500/40 transition-all group">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="p-3 bg-emerald-500/10 text-emerald-400 rounded-xl">
+                  <i data-lucide="github" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <h4 class="font-bold text-white text-sm group-hover:text-emerald-400 transition-colors">Repositorio del Portafolio</h4>
+                  <p class="text-xs text-gray-400">Código fuente alojado en GitHub</p>
+                </div>
+              </div>
+              <i data-lucide="external-link" class="w-4 h-4 text-gray-500 group-hover:text-white transition-colors"></i>
+            </div>
+          </a>
+
+        </div>
+
+        <!-- Right Contact Form -->
+        <div class="lg:col-span-7 bg-gray-900/80 border border-gray-800 p-6 sm:p-8 rounded-2xl">
+          <form id="contactForm" class="space-y-4">
+            <div class="flex items-center gap-2 mb-2 text-white font-bold text-lg">
+              <i data-lucide="send" class="w-5 h-5 text-sky-400"></i>
+              <span>Enviar un Mensaje</span>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="space-y-1">
+                <label class="text-xs text-gray-300 font-medium">Tu Nombre *</label>
+                <input type="text" required placeholder="Ej: María González" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500 transition-colors" />
+              </div>
+              <div class="space-y-1">
+                <label class="text-xs text-gray-300 font-medium">Tu Email *</label>
+                <input type="email" required placeholder="tu@empresa.com" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500 transition-colors" />
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs text-gray-300 font-medium">Asunto</label>
+              <input type="text" placeholder="Oportunidad laboral / Proyecto" class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500 transition-colors" />
+            </div>
+
+            <div class="space-y-1">
+              <label class="text-xs text-gray-300 font-medium">Mensaje *</label>
+              <textarea rows="4" required placeholder="Escribe tu mensaje aquí..." class="w-full bg-gray-950 border border-gray-800 rounded-xl px-4 py-2.5 text-xs sm:text-sm text-white focus:outline-none focus:border-sky-500 transition-colors resize-none"></textarea>
+            </div>
+
+            <button type="submit" id="submitBtn" class="w-full py-3 bg-sky-500 hover:bg-sky-400 text-white rounded-xl text-sm font-semibold shadow-lg shadow-sky-500/25 flex items-center justify-center gap-2 transition-all">
+              <i data-lucide="send" class="w-4 h-4"></i>
+              <span>Enviar Mensaje</span>
+            </button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="py-8 border-t border-gray-800/80 bg-gray-950 text-center text-xs text-gray-500">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 Jonathan Alquinta. Todos los derechos reservados.</p>
+      <p class="font-mono">Diseñado & Desarrollado con HTML, Tailwind CSS y JavaScript</p>
+    </div>
+  </footer>
+
+  <!-- MODAL DE PROYECTO -->
+  <div id="projectModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-gray-900 border border-gray-800 w-full max-w-2xl rounded-2xl p-6 space-y-6 relative max-h-[90vh] overflow-y-auto">
+      <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-white p-2">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="space-y-2">
+        <span id="modalCategory" class="px-2.5 py-1 rounded-md bg-sky-500/10 text-sky-400 text-xs font-mono font-semibold">Categoría</span>
+        <h3 id="modalTitle" class="text-2xl font-bold text-white">Título del Proyecto</h3>
+      </div>
+
+      <p id="modalDescription" class="text-gray-300 text-sm leading-relaxed">
+        Descripción detallada del proyecto...
+      </p>
+
+      <div class="space-y-2">
+        <h4 class="text-xs font-mono font-bold text-sky-400 uppercase">Tecnologías Utilizadas</h4>
+        <div id="modalTags" class="flex flex-wrap gap-2"></div>
+      </div>
+
+      <div class="pt-4 border-t border-gray-800 flex justify-end gap-3">
+        <button id="modalCloseAction" class="px-4 py-2 bg-gray-800 hover:bg-gray-700 text-gray-300 rounded-xl text-xs font-semibold">
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-5 right-5 bg-sky-500 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center gap-2 text-xs font-semibold transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+    <i data-lucide="check-circle" class="w-4 h-4"></i>
+    <span id="toastMsg">¡Correo copiado al portapapeles!</span>
+  </div>
+
+  <!-- SCRIPT DE FUNCIONALIDAD COMPLETA -->
+  <script>
+    // Inicializar íconos de Lucide
+    lucide.createIcons();
+
+    // 1. Selector de Tema (Modo Oscuro / Claro)
+    const themeToggleBtn = document.getElementById('themeToggle');
+    themeToggleBtn.addEventListener('click', () => {
+      document.documentElement.classList.toggle('dark');
+      const isDark = document.documentElement.classList.contains('dark');
+      themeToggleBtn.innerHTML = isDark 
+        ? '<i data-lucide="moon" class="w-4 h-4"></i>' 
+        : '<i data-lucide="sun" class="w-4 h-4"></i>';
+      lucide.createIcons();
+    });
+
+    // 2. Menú Móvil
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // 3. Filtros de Proyectos
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        filterBtns.forEach(b => {
+          b.classList.remove('bg-sky-500', 'text-white');
+          b.classList.add('text-gray-400');
+        });
+        btn.classList.add('bg-sky-500', 'text-white');
+        btn.classList.remove('text-gray-400');
+
+        const filter = btn.getAttribute('data-filter');
+
+        projectCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          if (filter === 'all' || category === filter) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+    });
+
+    // 4. Acordeón de Ejercicios
+    const accordionHeaders = document.querySelectorAll('.accordion-header');
+    accordionHeaders.forEach(header => {
+      header.addEventListener('click', () => {
+        const content = header.nextElementSibling;
+        const icon = header.querySelector('[data-lucide="chevron-down"]');
+        
+        content.classList.toggle('hidden');
+        if (icon) {
+          icon.classList.toggle('rotate-180');
+        }
+      });
+    });
+
+    // 5. Modal de Proyectos
+    const modalData = {
+      devstore: {
+        title: "DevStore - Tienda Online Fullstack",
+        category: "Fullstack",
+        description: "Aplicación de comercio electrónico completa desarrollada durante el bootcamp Skillnest. Incluye autenticación de usuarios, carrito de compras persistente, integración con base de datos PostgreSQL mediante Express/Node.js y diseño totalmente adaptativo.",
+        tags: ["Node.js", "Express", "PostgreSQL", "JavaScript ES6", "HTML/CSS"]
+      },
+      weather: {
+        title: "WeatherDash - Dashboard de Clima",
+        category: "Frontend",
+        description: "Dashboard meteorológico que consume la API REST de OpenWeatherMap. Muestra la temperatura actual, pronóstico de días siguientes, buscador por ciudad y estados dinámicos del clima.",
+        tags: ["HTML5", "Tailwind CSS", "Fetch API", "JavaScript"]
+      },
+      taskmanager: {
+        title: "TaskManager Skillnest",
+        category: "Ejercicios JS",
+        description: "Aplicación web interactiva para la gestión de tareas. Desarrollada con JavaScript puro (Vanilla JS), manejo del DOM y almacenamiento local (LocalStorage).",
+        tags: ["JavaScript Vanilla", "LocalStorage", "Eventos DOM"]
+      }
+    };
+
+    const modal = document.getElementById('projectModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const modalCloseAction = document.getElementById('modalCloseAction');
+
+    document.querySelectorAll('.open-modal-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-id');
+        const data = modalData[id];
+
+        if (data) {
+          document.getElementById('modalTitle').textContent = data.title;
+          document.getElementById('modalCategory').textContent = data.category;
+          document.getElementById('modalDescription').textContent = data.description;
+          
+          const tagsContainer = document.getElementById('modalTags');
+          tagsContainer.innerHTML = '';
+          data.tags.forEach(tag => {
+            const span = document.createElement('span');
+            span.className = "px-2 py-1 rounded bg-gray-800 text-xs font-mono text-sky-300";
+            span.textContent = tag;
+            tagsContainer.appendChild(span);
+          });
+
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+        }
+      });
+    });
+
+    const closeModal = () => {
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    };
+
+    closeModalBtn.addEventListener('click', closeModal);
+    modalCloseAction.addEventListener('click', closeModal);
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // 6. Copiar Correo al Portapapeles & Toast
+    const copyEmailBtn = document.getElementById('copyEmailBtn');
+    const toast = document.getElementById('toast');
+
+    const showToast = (message) => {
+      document.getElementById('toastMsg').textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 3000);
+    };
+
+    copyEmailBtn.addEventListener('click', () => {
+      const email = document.getElementById('emailText').textContent;
+      navigator.clipboard.writeText(email).then(() => {
+        showToast('¡Correo copiado al portapapeles!');
+      });
+    });
+
+    // 7. Formulario de Contacto Dinámico
+    const contactForm = document.getElementById('contactForm');
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<span>Enviando...</span>';
+
+      setTimeout(() => {
+        showToast('¡Mensaje enviado con éxito!');
+        contactForm.reset();
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i data-lucide="send" class="w-4 h-4"></i><span>Enviar Mensaje</span>';
+        lucide.createIcons();
+      }, 1500);
+    });
+  </script>
+</body>
+</html>
